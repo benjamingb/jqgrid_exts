@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="/jquery/ui/css/flick/jquery-ui-1.8.14.custom.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="/jquery/ui.jqgrid.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/customer1/public/styles/main.css" media="screen" rel="stylesheet" type="text/css" />            
+</head>
+    <body>
+
+                <table id="products"></table>
+<div id="pagerProducts"></div><script>
+    
+</script>
+
+            </div>
+        </di>
+        
+<script type="text/javascript" src="/jquery/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/scripts/jquery/ui/jquery-ui-1.8.14.custom.min.js"></script>
+<script type="text/javascript" src="jquery/jqGrid/i18n/grid.locale-es.js"></script>
+<script type="text/javascript" src="/jquery/jqGrid/jquery.jqGrid.min.js"></script>
+<script type="text/javascript" src="/jquery/jquery.jqgrid.exts.js"></script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+    var lastSel;
+ $("#products").jqGrid({
+	"url":"/customer1/public/test?jqGridDataformat=json",
+	"datatype":"json",
+	colNames:['Code','SKU','Name','Stock'],
+colModel:[
+{"name":"pd_id","index":"pd_id","width":"60","align":"center"},
+{"name":"pd_sku","index":"pd_sku","width":"50","align":"center"},
+{"name":"pd_name","index":"pd_name","width":"250"},
+{"name":"pd_stock","index":"pd_stock","width":"50","align":"center","hidden":false}],
+	"rowList":[
+		10,
+		20,
+		30
+	],
+	"rowNum":15,
+	"width":650,
+	"height":"auto",
+	"viewrecords":true,
+	"rownumbers":true,
+	"rownumWidth":30,
+	"sortname":"pd_id",
+	"sortorder":"asc",
+	"editurl":"/customer1/public/test?jqGridDataformat=json",
+	"caption":"Products",
+	"multiselect":true,
+	"pager":"pagerProducts",
+	onSelectAll:function(rowid,status) {
+                    //persist all checks 
+                    $(this).multiselect(rowid, status);
+                },
+        onSelectRow:function(rowid,status) {
+                     //persist row check
+                    $(this).multiselect(rowid, status);
+                },
+        loadComplete:function(data) {
+                         //display multicheck selected
+                        $(this).multiselectDisplay();
+                },
+
+});
+$("#products").jqGrid("navGrid","#pagerProducts",{"edit":true,"add":false,"del":false});
+
+
+});
+//]]>
+
+</script>
+
+</body>
+</html>
