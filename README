@@ -1,0 +1,19 @@
+Persist between pages multicheck status state
+
+Use localStorage 
+
+
+$("#products").jqGrid({
+	onSelectAll:function(rowid,status) {
+                 //persist all checks 
+                $(this).multiselect(rowid, status);
+        },
+        onSelectRow:function(rowid,status) {
+                 //persist row check
+                $(this).multiselect(rowid, status);
+        },
+        loadComplete:function(data) {
+                //display multicheck selected
+                $(this).multiselectDisplay();
+        },
+});
