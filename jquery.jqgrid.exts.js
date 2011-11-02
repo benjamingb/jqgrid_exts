@@ -1,5 +1,5 @@
 /**
- * qGrid  extension 0.1 - jQuery Grid 
+ * JqGrid  extension 0.1 - jQuery Grid 
  *
  * LICENSE
  *
@@ -12,7 +12,7 @@
  * @author     Benjamin Gonzales  benjain@gnbit.com
  * @copyright  Copyright (c) 2011 GnBit.SAC. (http://www.gnbit.com)
  * @license    http://gnbit.com/license/new-bsd     New BSD License
- * @version    $
+ * @version    0.1.0
  */
 
 ;(function($) {
