@@ -15,7 +15,9 @@
  * @version    0.1.0
  */
 
-;(function($) {
+;
+(function($) {
+   
     $.fn.multiselect = function(rowid, status){
         var gridId = this.attr('id');
         if($.isArray(rowid) && rowid.length>0){
@@ -35,19 +37,37 @@
         }
     }
     
+   
     $.fn.multiselectDisplay = function(){
         if(localStorage.length>0){
+            var ids =  $(this).getDataIDs();
             for (i=0; i<localStorage.length; i++)  
             {  
                 key = localStorage.key(i);  
-                val = localStorage.getItem(key);  
-                $(this).jqGrid('setSelection',val);
-            }  
+                val = localStorage.getItem(key); 
+                if($.inArray(val,ids) > -1){
+                    $(this).jqGrid('setSelection',val);
+                }  
+            }
         }
     }
     
     $.fn.multiselectReset = function(){
         localStorage.clear();
+    }
+    
+    $.fn.getRowsMultiselect = function (){
+        var idRows  = new Array();
+        if(localStorage.length>0){
+            for (i=0; i<localStorage.length; i++){
+                key = localStorage.key(i);  
+                val = localStorage.getItem(key); 
+                if(val != null){
+                    idRows.push(val);
+                }
+            }  
+        }
+        return idRows;
     }
 })(jQuery);
 
